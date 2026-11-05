@@ -1,6 +1,7 @@
-@props(['transparent' => false])
 @php
     $items = config('company.nav');
+    // Halaman dengan hero berfoto mengisi @section('nav', 'transparent') agar navbar menyatu dengan foto.
+    $transparent = $__env->yieldContent('nav') === 'transparent';
 @endphp
 {{-- Di posisi atas halaman: navy (atau transparan di atas hero); putih setelah di-scroll (data-scrolled diatur app.js). --}}
 <header data-site-header data-scrolled="false"
@@ -12,7 +13,7 @@
     <div class="container-site flex h-[4.5rem] items-center justify-between gap-4 lg:h-20">
         <a href="{{ route('home') }}" class="flex items-center gap-3 rounded-lg" aria-label="{{ config('company.name') }} — Beranda">
             <span class="flex size-12 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-navy/10">
-                <x-logo size="size-10" />
+                <x-application-logo size="size-10" />
             </span>
             <span class="font-display text-sm font-extrabold uppercase leading-tight tracking-wide text-white transition-colors group-data-[scrolled=true]:text-navy sm:text-base">
                 Bali Oase <span class="text-brand-bright transition-colors group-data-[scrolled=true]:text-brand">Semesta</span>
@@ -21,7 +22,7 @@
 
         <nav class="hidden items-center gap-8 lg:flex" aria-label="Navigasi utama">
             @foreach ($items as $route => $label)
-                @php $active = request()->routeIs($route); @endphp
+                @php $active = request()->routeIs($route, $route.'.*'); @endphp
                 <a href="{{ route($route) }}" @if ($active) aria-current="page" @endif
                    class="relative rounded py-2 text-sm font-semibold transition-colors
                           {{ $active ? 'text-white group-data-[scrolled=true]:text-brand' : 'text-white/75 hover:text-white group-data-[scrolled=true]:text-ink/70 group-data-[scrolled=true]:hover:text-brand' }}">
@@ -44,7 +45,7 @@
          class="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-white/10 bg-navy group-data-[scrolled=true]:border-navy/10 group-data-[scrolled=true]:bg-white lg:hidden">
         <ul class="container-site py-2">
             @foreach ($items as $route => $label)
-                @php $active = request()->routeIs($route); @endphp
+                @php $active = request()->routeIs($route, $route.'.*'); @endphp
                 <li class="border-b border-white/10 group-data-[scrolled=true]:border-navy/10">
                     <a href="{{ route($route) }}" @if ($active) aria-current="page" @endif
                        class="flex items-center justify-between py-4 text-base font-semibold transition-colors

@@ -1,14 +1,15 @@
 @php $c = config('company'); @endphp
-<footer id="kontak" class="border-t-2 border-brand bg-navy-dark text-white/80">
+<footer id="kontak" class="border-t-2 border-brand bg-black text-white/80">
     <div class="container-site grid gap-10 py-14 md:grid-cols-3">
         <div>
             <div class="flex items-center gap-3">
                 <span class="flex size-14 shrink-0 items-center justify-center rounded-full bg-white">
-                    <x-logo size="size-11" />
+                    <x-application-logo size="size-11" />
                 </span>
                 <span class="font-display text-base font-extrabold uppercase leading-tight tracking-wide text-white">{{ $c['name'] }}</span>
             </div>
-            <p class="mt-4 max-w-xs text-sm leading-relaxed">{{ $c['city'] }}</p>
+            {{-- Hanya fakta terkonfirmasi: domisili dan jumlah bidang usaha. --}}
+            <p class="mt-5 max-w-sm text-sm leading-relaxed">{{ $c['name'] }} berkedudukan di {{ $c['city'] }} dan menjalankan kegiatan usaha pada {{ count($c['activities']) }} bidang. Silakan lihat halaman Layanan &amp; Jasa untuk mengetahui layanan yang tersedia.</p>
         </div>
 
         <nav aria-label="Navigasi footer">

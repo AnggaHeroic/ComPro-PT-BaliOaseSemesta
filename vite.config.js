@@ -13,7 +13,7 @@ export default defineConfig({
                     weights: [400, 500, 600],
                 }),
                 bunny('Montserrat', {
-                    weights: [600, 700, 800],
+                    weights: [600, 700, 800, 900],
                 }),
             ],
         }),

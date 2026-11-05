@@ -16,7 +16,7 @@
 
                     <div class="flex flex-1 flex-col items-center px-6 pb-6 text-center">
                         <span class="-mt-8 flex size-16 shrink-0 items-center justify-center rounded-full bg-navy text-white ring-4 ring-white">
-                            <x-activity-icon :name="$icons[$i] ?? ''" accent="stroke-brand-bright" class="size-10" />
+                            <x-icon :name="$icons[$i] ?? ''" accent="stroke-brand-bright" class="size-10" />
                         </span>
 
                         {{-- Area judul memuat hingga tiga baris, judul di tengahnya; skeleton menempel di bawahnya. --}}

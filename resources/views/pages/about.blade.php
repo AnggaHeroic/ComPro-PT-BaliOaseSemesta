@@ -1,6 +1,12 @@
+@extends('layouts.app')
+
 @php $c = config('company'); @endphp
-<x-layouts.app title="Tentang Kami" :description="$c['name'].' berkedudukan di '.$c['city'].'.'">
-    <x-page-hero eyebrow="Tentang Kami" :title="$c['name']" />
+
+@section('title', 'Tentang Kami')
+@section('description', $c['name'].' berkedudukan di '.$c['city'].'.')
+
+@section('content')
+    <x-site.hero eyebrow="Tentang Kami" :title="$c['name']" />
 
     {{-- Hanya fakta yang dikonfirmasi. Sejarah, visi, misi, dan nilai belum tersedia, sehingga tidak ditampilkan. --}}
     <section class="py-16 sm:py-20">
@@ -17,10 +23,10 @@
             </div>
 
             <aside class="h-fit space-y-4" aria-label="Informasi perusahaan">
-                <x-contact-card icon="map-pin" title="Alamat" :value="$c['address']" />
-                <x-contact-card icon="mail" title="Email" :value="$c['email']" :href="'mailto:'.$c['email']" />
-                <x-contact-card icon="phone" title="Telepon" :value="$c['phone']" :href="'tel:'.$c['phone_href']" />
+                <x-site.contact-card icon="map-pin" title="Alamat" :value="$c['address']" />
+                <x-site.contact-card icon="mail" title="Email" :value="$c['email']" :href="'mailto:'.$c['email']" />
+                <x-site.contact-card icon="phone" title="Telepon" :value="$c['phone']" :href="'tel:'.$c['phone_href']" />
             </aside>
         </div>
     </section>
-</x-layouts.app>
+@endsection
