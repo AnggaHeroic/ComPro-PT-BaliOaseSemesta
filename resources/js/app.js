@@ -1,4 +1,11 @@
+import Alpine from 'alpinejs';
 import './carousel';
+import { documentationLightbox } from './lightbox';
+
+// Alpine dipakai untuk galeri dokumentasi di halaman detail aktivitas (paginasi dan lightbox).
+window.Alpine = Alpine;
+Alpine.data('documentationLightbox', documentationLightbox);
+Alpine.start();
 
 const header = document.querySelector('[data-site-header]');
 const toggle = document.querySelector('[data-nav-toggle]');
