@@ -22,6 +22,20 @@
     --color-surface: #f6f7fb;
 }
 
+/* Menu mobile turun halus saat dibuka; dimatikan bila pengguna memilih kurangi gerakan. */
+@keyframes menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-0.5rem);
+    }
+}
+@utility animate-menu-in {
+    animation: menu-in 200ms ease-out;
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
 @layer base {
     [x-cloak] {
         display: none !important;

@@ -4,6 +4,11 @@
     // Ikon aktivitas: warna utama currentColor; detail merah memakai class stroke-brand yang diganti oleh $accent.
     $ui = [
         'arrow-right' => '<path d="M5 12h14M13 6l6 6-6 6"/>',
+        'chevron-down' => '<path d="m6 9 6 6 6-6"/>',
+        'chevron-right' => '<path d="m9 6 6 6-6 6"/>',
+        'home' => '<path d="M3 11 12 3l9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/>',
+        'building' => '<rect x="5" y="3" width="14" height="18"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/>',
+        'layers' => '<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/>',
         'arrow-left' => '<path d="M19 12H5M11 6l-6 6 6 6"/>',
         'close' => '<path d="M6 6l12 12M18 6 6 18"/>',
         'zoom-in' => '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M11 8v6M8 11h6"/>',

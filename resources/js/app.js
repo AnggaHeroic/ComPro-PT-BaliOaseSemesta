@@ -23,6 +23,8 @@ if (toggle && menu) {
     const setOpen = (open) => {
         menu.hidden = !open;
         toggle.setAttribute('aria-expanded', String(open));
+        // Header ikut gelap saat menu terbuka di atas hero transparan (lihat navbar.blade.php).
+        header?.setAttribute('data-menu-open', String(open));
     };
 
     toggle.addEventListener('click', () => setOpen(menu.hidden));

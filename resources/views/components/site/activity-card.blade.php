@@ -1,7 +1,7 @@
 @props(['title', 'image', 'icon', 'href'])
 {{-- Kartu aktivitas: separuh atas foto, separuh bawah panel putih. Ikon menumpang di sambungan keduanya.
      Area judul punya tinggi tetap, sehingga ikon, judul, dan tombol panah sejajar di semua kartu. --}}
-<li {{ $attributes->class('group relative flex min-h-[30rem] flex-col overflow-hidden border border-navy/10 bg-white shadow-sm shadow-navy/5 transition-colors duration-300 hover:border-brand/40') }}>
+<li {{ $attributes->class('group relative flex flex-col sm:min-h-[30rem] overflow-hidden border border-navy/10 bg-white shadow-sm shadow-navy/5 transition-colors duration-300 hover:border-brand/40') }}>
     {{-- Foto PLACEHOLDER sementara (Picsum/Unsplash, bebas pakai). Ganti dengan foto resmi perusahaan bila tersedia. --}}
     <div class="relative h-56 shrink-0 overflow-hidden sm:h-60" aria-hidden="true">
         <img src="https://picsum.photos/id/{{ $image }}/800/600" alt="" width="800" height="600" loading="lazy" referrerpolicy="no-referrer"
@@ -17,11 +17,11 @@
             <x-icon :name="$icon" accent="stroke-brand-bright" class="size-8" />
         </span>
 
-        {{-- Area judul setinggi empat baris, judul dimulai dari atas area ini. --}}
-        <h3 class="mt-4 min-h-[7.5rem] font-display text-lg font-bold leading-snug tracking-tight text-navy">{{ $title }}</h3>
+        {{-- Area judul setinggi empat baris (mulai layar sm, saat kartu berjajar) agar ikon, judul, dan panah sejajar; di mobile (satu kolom) tinggi mengikuti isi. --}}
+        <h3 class="mt-4 font-display sm:min-h-[7.5rem] text-lg font-bold leading-snug tracking-tight text-navy">{{ $title }}</h3>
 
         {{-- Penanda "buka detail"; seluruh kartu menjadi tautan lewat anchor di bawah. --}}
-        <span class="mx-auto mt-auto inline-flex size-10 items-center justify-center rounded-full border border-navy/30 text-navy transition-colors duration-200 group-hover:border-navy group-hover:bg-navy group-hover:text-white" aria-hidden="true">
+        <span class="mx-auto mt-6 inline-flex size-10 sm:mt-auto items-center justify-center rounded-full border border-navy/30 text-navy transition-colors duration-200 group-hover:border-navy group-hover:bg-navy group-hover:text-white" aria-hidden="true">
             <x-icon name="arrow-right" class="size-4" />
         </span>
     </div>
