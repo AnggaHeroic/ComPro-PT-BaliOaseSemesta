@@ -94,6 +94,14 @@
     background-size: 18px 18px;
 }
 
+/* Kisi halus ala gambar teknik, dipakai sebagai latar dekoratif hero. Dipudarkan dengan mask di tempat pemakaian. */
+@utility pattern-grid {
+    background-image:
+        linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+}
+
 @utility no-scrollbar {
     scrollbar-width: none;
 

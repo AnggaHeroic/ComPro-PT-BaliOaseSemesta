@@ -40,10 +40,21 @@ class PublicPagesTest extends TestCase
 
         $response = $this->get(route('activities.category', $category['slug']))->assertOk()->assertSee($category['name']);
 
+        // Yang dibatasi kategori adalah daftar kartu; bilah indeks di hero selalu memuat semua bidang usaha.
         foreach (config('company.activities') as $i => $activity) {
             in_array($i + 1, $category['items'], true)
-                ? $response->assertSee($activity)
-                : $response->assertDontSee($activity);
+                ? $response->assertSee('Lihat detail: '.$activity)
+                : $response->assertDontSee('Lihat detail: '.$activity);
+        }
+    }
+
+    public function test_hero_index_bar_lists_every_activity_on_category_pages(): void
+    {
+        $category = config('company.activity_categories')[0];
+        $response = $this->get(route('activities.category', $category['slug']))->assertOk()->assertSee('Indeks bidang usaha');
+
+        foreach (config('company.activity_slugs') as $slug) {
+            $response->assertSee(route('activities.show', $slug), false);
         }
     }
 
@@ -174,6 +185,38 @@ class PublicPagesTest extends TestCase
         $this->assertCount(count(config('company.activities')), config('company.activity_icons'));
 
         $this->get('/')->assertOk()->assertSee('data-carousel-item', false);
+    }
+
+    public function test_about_page_has_no_activity_list_and_no_history(): void
+    {
+        $response = $this->get('/tentang-kami')->assertOk();
+
+        $response->assertDontSee('judul-bidang-usaha', false);
+        // Sejarah belum dikonfirmasi sehingga tidak boleh tampil.
+        $response->assertDontSee('Sejarah');
+    }
+
+    public function test_about_page_shows_placeholder_profile_and_short_cta(): void
+    {
+        $profile = config('company.about.profile');
+
+        $this->get('/tentang-kami')->assertOk()
+            ->assertSee($profile['paragraphs'][0])
+            ->assertSee($profile['facts'][0]['text'])
+            ->assertSee('Mari')
+            ->assertDontSee('Butuh informasi lebih lanjut');
+    }
+
+    public function test_about_page_shows_vision_mission_and_values_and_hides_them_when_empty(): void
+    {
+        $this->get('/tentang-kami')->assertOk()
+            ->assertSee(config('company.about.vision'))
+            ->assertSee(config('company.about.missions')[0]['title'])
+            ->assertSee(config('company.about.values')[0]['text']);
+
+        config(['company.about' => []]);
+
+        $this->get('/tentang-kami')->assertOk()->assertDontSee('Nilai Perusahaan')->assertDontSee('judul-visi-misi', false);
     }
 
     public function test_navigation_links_to_every_page(): void

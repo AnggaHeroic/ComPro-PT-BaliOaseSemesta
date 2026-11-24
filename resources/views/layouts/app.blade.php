@@ -1,46 +1,49 @@
-@php
-    $company = config('company');
-    $pageTitle = View::hasSection('title') ? $__env->yieldContent('title').' — '.$company['name'] : $company['name'];
-    $metaDescription = View::hasSection('description')
-        ? $__env->yieldContent('description')
-        : $company['name'].', '.$company['city'].'. Profil perusahaan, bidang usaha, dan informasi kontak.';
-@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
 
-    {{-- Primary Metadata (nilai @section sudah ter-escape, maka dicetak apa adanya) --}}
-    <title>{!! $pageTitle !!}</title>
-    <meta name="description" content="{!! $metaDescription !!}">
-    <meta property="og:title" content="{!! $pageTitle !!}">
-    <meta property="og:description" content="{!! $metaDescription !!}">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="id_ID">
-    <meta name="theme-color" content="#0a1650">
+    <title>@hasSection('title')@yield('title') — @endif Admin {{ config('app.name') }}</title>
 
-    {{-- Favicon --}}
-    <x-favicon />
-
-    {{-- Assets --}}
+    <x-ui.favicon />
     @fonts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="flex min-h-screen flex-col">
-    <a href="#konten" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Lewati ke konten</a>
+{{-- Layout panel admin (CMS). Konten halaman lewat @section('content'). --}}
+<body class="min-h-screen bg-surface">
+    <header class="border-b-2 border-brand bg-navy text-white">
+        <div class="container-site flex h-16 items-center justify-between gap-4">
+            <div class="flex items-center gap-8">
+                <a href="{{ route('admin.galleries.index') }}" class="flex items-center gap-3 font-display text-sm font-extrabold uppercase tracking-wide">
+                    <x-ui.application-logo size="size-8" class="rounded-full bg-white p-0.5" />
+                    Admin
+                </a>
+                <nav aria-label="Navigasi admin" class="flex gap-5 text-sm font-semibold">
+                    <a href="{{ route('admin.galleries.index') }}"
+                       @class(['transition-colors hover:text-white', 'text-white' => request()->routeIs('admin.galleries.*'), 'text-white/70' => ! request()->routeIs('admin.galleries.*')])>Galeri</a>
+                </nav>
+            </div>
 
-    {{-- Global Navigation --}}
-    @include('components.site.navbar')
+            <div class="flex items-center gap-4 text-sm">
+                <a href="{{ route('home') }}" class="text-white/70 transition-colors hover:text-white">Lihat situs</a>
+                <span class="hidden text-white/70 sm:inline">{{ auth()->user()->name }}</span>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="font-semibold text-brand-bright transition-colors hover:text-white">Keluar</button>
+                </form>
+            </div>
+        </div>
+    </header>
 
-    {{-- Page Content --}}
-    <main id="konten" class="flex-1">
+    <main class="container-site space-y-6 py-8">
+        <x-ui.flash-message />
+
         @yield('content')
     </main>
-
-    {{-- Global Footer --}}
-    @include('components.site.footer')
 </body>
 </html>

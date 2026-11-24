@@ -16,6 +16,42 @@ return [
     'maps_url' => 'https://maps.app.goo.gl/Z66zQH5FvfYzCuMq5',
     'city' => 'Denpasar, Bali',
 
+    // Visi, misi, dan nilai: PLACEHOLDER lorem ipsum. Ganti dengan teks resmi perusahaan; seksi disembunyikan bila datanya kosong.
+    'about' => [
+        'profile' => [
+            'label' => 'Profil Perusahaan',
+            'title' => 'Lorem ipsum dolor',
+            'title_accent' => 'sit amet consectetur',
+            'paragraphs' => [
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+                'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
+                'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore.',
+            ],
+            // ID foto Picsum sebagai placeholder; ganti dengan foto resmi perusahaan.
+            'image' => 1031,
+            'image_caption' => 'Lorem ipsum dolor sit amet',
+            'facts' => [
+                ['title' => 'Lorem ipsum', 'text' => 'Dolor sit amet'],
+                ['title' => 'Consectetur', 'text' => 'Adipiscing elit'],
+                ['title' => 'Sed do eiusmod', 'text' => 'Tempor incididunt'],
+                ['title' => 'Ut labore', 'text' => 'Et dolore magna'],
+            ],
+        ],
+        'vision' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'missions' => [
+            ['title' => 'Lorem ipsum dolor', 'text' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'],
+            ['title' => 'Consectetur adipiscing', 'text' => 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'],
+            ['title' => 'Sed do eiusmod', 'text' => 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'],
+            ['title' => 'Tempor incididunt', 'text' => 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.'],
+        ],
+        'values' => [
+            ['title' => 'Lorem', 'text' => 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.'],
+            ['title' => 'Ipsum', 'text' => 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur.'],
+            ['title' => 'Dolor', 'text' => 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit.'],
+            ['title' => 'Amet', 'text' => 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.'],
+        ],
+    ],
+
     // Nama route => label. Item yang route-nya belum terdaftar tidak ditampilkan.
     'nav' => [
         'home' => 'Beranda',

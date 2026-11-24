@@ -1,3 +1,5 @@
+@GUIDE.md
+
 <laravel-boost-guidelines>
 # Laravel Application
 

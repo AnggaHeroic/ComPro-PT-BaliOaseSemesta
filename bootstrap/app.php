@@ -12,7 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Pengguna yang sudah login dan membuka halaman tamu (login) diarahkan ke panel admin.
+        $middleware->redirectUsersTo(fn () => route('admin.galleries.index'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
